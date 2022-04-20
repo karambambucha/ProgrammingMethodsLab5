@@ -11,7 +11,7 @@ using System.Windows.Forms;
 
 namespace ProgrammingMethodsLab5
 {
-    public partial class Form1 : Form
+    public partial class ClocksInterface : Form
     {
         Timer timer = new Timer();
         int WIDTH, HEIGHT, secHAND = 140, minHAND = 110, hrHAND = 80;
@@ -22,7 +22,7 @@ namespace ProgrammingMethodsLab5
         static DigitalClock digitalClock = new DigitalClock(25, 59, 55);
         static AnalogueToDigitalAdapter adapter = new AnalogueToDigitalAdapter(analogueClock); 
         static Client client = new Client();
-        public Form1()
+        public ClocksInterface()
         {
             InitializeComponent();
         }

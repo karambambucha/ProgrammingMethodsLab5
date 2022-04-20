@@ -1,7 +1,7 @@
 ﻿
 namespace ProgrammingMethodsLab5
 {
-    partial class Form1
+    partial class ClocksInterface
     {
         /// <summary>
         /// Обязательная переменная конструктора.
@@ -86,10 +86,10 @@ namespace ProgrammingMethodsLab5
             // 
             this.clockText.BackColor = System.Drawing.SystemColors.InactiveCaptionText;
             this.clockText.Font = new System.Drawing.Font("Helvetica LT UltraCompressed", 96F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.clockText.Location = new System.Drawing.Point(800, 87);
+            this.clockText.Location = new System.Drawing.Point(804, 87);
             this.clockText.Name = "clockText";
             this.clockText.ShowSelectionMargin = true;
-            this.clockText.Size = new System.Drawing.Size(427, 200);
+            this.clockText.Size = new System.Drawing.Size(423, 200);
             this.clockText.TabIndex = 2;
             this.clockText.Text = "0";
             // 
@@ -296,11 +296,11 @@ namespace ProgrammingMethodsLab5
             this.setRealTimeBtn.Name = "setRealTimeBtn";
             this.setRealTimeBtn.Size = new System.Drawing.Size(172, 50);
             this.setRealTimeBtn.TabIndex = 20;
-            this.setRealTimeBtn.Text = "Задать обоим часам настоящее время";
+            this.setRealTimeBtn.Text = "Задать часам текущее время";
             this.setRealTimeBtn.UseVisualStyleBackColor = true;
             this.setRealTimeBtn.Click += new System.EventHandler(this.setRealTimeBtn_Click);
             // 
-            // Form1
+            // ClocksInterface
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -327,8 +327,8 @@ namespace ProgrammingMethodsLab5
             this.Controls.Add(this.clockText);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.richTextBox1);
-            this.Name = "Form1";
-            this.Text = "Form1";
+            this.Name = "ClocksInterface";
+            this.Text = "Программа для работы с аналоговым часами";
             this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.hourNum)).EndInit();
