@@ -60,10 +60,11 @@ namespace ProgrammingMethodsLab5
         }
         public AnalogueClock(int hr, int min, int sec)
         {
-            if ((hr / 12) % 2 == 0)
-                TimeOfDay = "PM";
-            else
+            hr %= 24;
+            if (hr >= 0 && hr < 12)
                 TimeOfDay = "AM";
+            else
+                TimeOfDay = "PM";
             SecondDegree = sec * 6;
             MinuteDegree = min * 6;
             HourDegree = hr * 30;
@@ -105,11 +106,21 @@ namespace ProgrammingMethodsLab5
         {
             HourDegree += (hr * 30);
         }
-        public void MoveAllArrows(int hr, int min, int sec)
+        public void MoveHoursArrowTo(int hr)
         {
-            SecondDegree += sec * 6;
-            MinuteDegree += min * 6;
-            HourDegree += hr * 30;
+            HourDegree = (hr * 30);
+            if ((hr / 12) % 2 == 0)
+                TimeOfDay = "AM";
+            else
+                TimeOfDay = "PM";
+        }
+        public void MoveMinutesArrowTo(int min)
+        {
+            MinuteDegree = (min * 6);
+        }
+        public void MoveSecondsArrowTo(int sec)
+        {
+            SecondDegree = (sec * 6);
         }
     }
 }

@@ -19,7 +19,9 @@ namespace ProgrammingMethodsLab5
         }
         public void AddTime(int hr, int min, int sec)
         {
-            adaptee.MoveAllArrows(hr, min, sec);
+            adaptee.MoveSecondsArrow(sec); 
+            adaptee.MoveMinutesArrow(min); 
+            adaptee.MoveHoursArrow(hr);
         }
         public void AddSeconds(int sec)
         {
@@ -32,6 +34,12 @@ namespace ProgrammingMethodsLab5
         public void AddHours(int hr)
         {
             adaptee.MoveHoursArrow(hr);
+        }
+        public void SetTime(int hr, int min, int sec)
+        {
+            adaptee.MoveHoursArrowTo(hr);
+            adaptee.MoveMinutesArrowTo(min);
+            adaptee.MoveSecondsArrowTo(sec);
         }
     }
 }

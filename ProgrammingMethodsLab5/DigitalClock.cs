@@ -93,5 +93,11 @@ namespace ProgrammingMethodsLab5
         {
             Hour += hr;
         }
+        public void SetTime(int hr, int min, int sec)
+        {
+            Hour = hr;
+            Minute = min;
+            Second = sec;
+        }
     }
 }

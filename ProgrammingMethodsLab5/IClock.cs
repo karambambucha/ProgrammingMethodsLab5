@@ -7,5 +7,6 @@
         void AddSeconds(int sec);
         void AddMinutes(int min);
         void AddHours(int hr);
+        void SetTime(int hr, int min, int sec);
     }
 }

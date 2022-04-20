@@ -13,13 +13,13 @@ namespace ProgrammingMethodsLab5
 {
     public partial class Form1 : Form
     {
-        Timer t = new Timer();
+        Timer timer = new Timer();
         int WIDTH, HEIGHT, secHAND = 140, minHAND = 110, hrHAND = 80;
         int cy, cx; 
         Bitmap bmp;
         Graphics clock;
-        static AnalogueClock analogueClock = new AnalogueClock(14, 59, 55);
-        static DigitalClock digitalClock = new DigitalClock(14, 59, 55);
+        static AnalogueClock analogueClock = new AnalogueClock(25, 59, 55);
+        static DigitalClock digitalClock = new DigitalClock(25, 59, 55);
         static AnalogueToDigitalAdapter adapter = new AnalogueToDigitalAdapter(analogueClock); 
         static Client client = new Client();
         public Form1()
@@ -42,6 +42,18 @@ namespace ProgrammingMethodsLab5
             digitalClock.AddSeconds((int)secondNum.Value);
         }
 
+        private void setRealTimeBtn_Click(object sender, EventArgs e)
+        {
+            digitalClock.SetTime(DateTime.Now.Hour, DateTime.Now.Minute, DateTime.Now.Second);
+            adapter.SetTime(DateTime.Now.Hour, DateTime.Now.Minute, DateTime.Now.Second);
+        }
+
+        private void setTimeBtn_Click(object sender, EventArgs e)
+        {
+            digitalClock.SetTime((int)setHourNum.Value, (int)setMinuteNum.Value, (int)setSecondNum.Value);
+            adapter.SetTime((int)setHourNum.Value, (int)setMinuteNum.Value, (int)setSecondNum.Value);
+        }
+
         private void Form1_Load(object sender, EventArgs e)
         {
             WIDTH = 300;
@@ -49,11 +61,11 @@ namespace ProgrammingMethodsLab5
             bmp = new Bitmap(WIDTH + 1, HEIGHT + 1);
             cx = WIDTH / 2;
             cy = HEIGHT / 2;
-            t.Interval = 1000; 
-            t.Tick += new EventHandler(t_Tick); 
-            t.Start();
+            timer.Interval = 1000; 
+            timer.Tick += new EventHandler(timerTick); 
+            timer.Start();
         }
-        private void t_Tick(object sender, EventArgs e)
+        private void timerTick(object sender, EventArgs e)
         {
             analogueClock.MoveSecondsArrow(1);
             digitalClock.AddSeconds(1);
@@ -78,16 +90,17 @@ namespace ProgrammingMethodsLab5
             clock.DrawString("9", new Font("Montserrat ExtraBold", 12), Brushes.White, new PointF(1, 140));
             clock.DrawString("10", new Font("Montserrat ExtraBold", 12), Brushes.White, new PointF(22, 70));
             clock.DrawString("11", new Font("Montserrat ExtraBold", 12), Brushes.White, new PointF(70, 22));
-            handCoord = sCoord(secHAND);
+            clock.DrawString(analogueClock.TimeOfDay, new Font("Montserrat ExtraBold", 12), Brushes.Red, new PointF(cx - 12, cy + 20));
+            handCoord = secondCoord(secHAND);
             clock.DrawLine(new Pen(Color.Red, 2f), new Point(cx, cy), new Point(handCoord[0], handCoord[1]));
-            handCoord = mCoord(minHAND);
+            handCoord = minuteCoord(minHAND);
             clock.DrawLine(new Pen(Color.White, 3f), new Point(cx, cy), new Point(handCoord[0], handCoord[1]));
-            handCoord = hCoord(hrHAND);
+            handCoord = hourCoord(hrHAND);
             clock.DrawLine(new Pen(Color.White, 3f), new Point(cx, cy), new Point(handCoord[0], handCoord[1])); 
             pictureBox1.Image = bmp;
             clock.Dispose();
         } 
-        private int[] mCoord(int hlen)
+        private int[] minuteCoord(int hlen)
         {
             int[] coord = new int[2];
             int val = analogueClock.MinuteDegree;
@@ -103,7 +116,7 @@ namespace ProgrammingMethodsLab5
             }
             return coord;
         }
-        private int[] sCoord(int hlen)
+        private int[] secondCoord(int hlen)
         {
             int[] coord = new int[2];
             int val = analogueClock.SecondDegree;
@@ -119,7 +132,7 @@ namespace ProgrammingMethodsLab5
             }
             return coord;
         }
-        private int[] hCoord(int hlen)
+        private int[] hourCoord(int hlen)
         {
             int[] coord = new int[2];
             int val = analogueClock.HourDegree + (analogueClock.MinuteDegree / 12);
