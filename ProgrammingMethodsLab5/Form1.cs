@@ -29,29 +29,29 @@ namespace ProgrammingMethodsLab5
 
         private void GetAnalogTime_Click(object sender, EventArgs e)
         {
-            MessageBox.Show(client.Request(adapter), "Время с аналоговых часов", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            MessageBox.Show(client.RequestTime(adapter), "Время с аналоговых часов", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        private void changeTimeBtn_Click(object sender, EventArgs e)
         {
-            adapter.AddHours((int)hourNum.Value);
-            adapter.AddMinutes((int)minuteNum.Value);
-            adapter.AddSeconds((int)secondNum.Value);
-            digitalClock.AddHours((int)hourNum.Value);
-            digitalClock.AddMinutes((int)minuteNum.Value);
-            digitalClock.AddSeconds((int)secondNum.Value);
+            client.AddHours(adapter, (int)hourNum.Value);
+            client.AddMinutes(adapter, (int)minuteNum.Value);
+            client.AddSeconds(adapter, (int)secondNum.Value);
+            client.AddHours(digitalClock, (int)hourNum.Value);
+            client.AddMinutes(digitalClock, (int)minuteNum.Value);
+            client.AddSeconds(digitalClock, (int)secondNum.Value);
         }
 
         private void setRealTimeBtn_Click(object sender, EventArgs e)
         {
-            digitalClock.SetTime(DateTime.Now.Hour, DateTime.Now.Minute, DateTime.Now.Second);
-            adapter.SetTime(DateTime.Now.Hour, DateTime.Now.Minute, DateTime.Now.Second);
+            client.SetTime(adapter, DateTime.Now.Hour, DateTime.Now.Minute, DateTime.Now.Second);
+            client.SetTime(digitalClock, DateTime.Now.Hour, DateTime.Now.Minute, DateTime.Now.Second);
         }
 
         private void setTimeBtn_Click(object sender, EventArgs e)
         {
-            digitalClock.SetTime((int)setHourNum.Value, (int)setMinuteNum.Value, (int)setSecondNum.Value);
-            adapter.SetTime((int)setHourNum.Value, (int)setMinuteNum.Value, (int)setSecondNum.Value);
+            client.SetTime(adapter, (int)setHourNum.Value, (int)setMinuteNum.Value, (int)setSecondNum.Value);
+            client.SetTime(digitalClock, (int)setHourNum.Value, (int)setMinuteNum.Value, (int)setSecondNum.Value);
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -67,9 +67,9 @@ namespace ProgrammingMethodsLab5
         }
         private void timerTick(object sender, EventArgs e)
         {
-            analogueClock.MoveSecondsArrow(1);
-            digitalClock.AddSeconds(1);
-            string text = client.Request(digitalClock);
+            client.AddSeconds(adapter, 1);
+            client.AddSeconds(digitalClock, 1);
+            string text = client.RequestTime(digitalClock);
             clockText.Text = text;
             clockText.SelectionStart = 0;
             clockText.SelectionLength = text.Length;

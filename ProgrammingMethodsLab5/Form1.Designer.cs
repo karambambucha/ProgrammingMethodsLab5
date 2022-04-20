@@ -111,7 +111,7 @@ namespace ProgrammingMethodsLab5
             this.changeTimeBtn.TabIndex = 4;
             this.changeTimeBtn.Text = "Изменить время";
             this.changeTimeBtn.UseVisualStyleBackColor = true;
-            this.changeTimeBtn.Click += new System.EventHandler(this.button2_Click);
+            this.changeTimeBtn.Click += new System.EventHandler(this.changeTimeBtn_Click);
             // 
             // hourNum
             // 
