@@ -18,8 +18,8 @@ namespace ProgrammingMethodsLab5
         int cy, cx; 
         Bitmap bmp;
         Graphics clock;
-        static AnalogueClock analogueClock = new AnalogueClock(25, 59, 55);
-        static DigitalClock digitalClock = new DigitalClock(25, 59, 55);
+        static AnalogueClock analogueClock = new AnalogueClock(DateTime.Now.Hour, DateTime.Now.Minute, DateTime.Now.Second);
+        static DigitalClock digitalClock = new DigitalClock(DateTime.Now.Hour, DateTime.Now.Minute, DateTime.Now.Second);
         static AnalogueToDigitalAdapter adapter = new AnalogueToDigitalAdapter(analogueClock); 
         static Client client = new Client();
         public ClocksInterface()
